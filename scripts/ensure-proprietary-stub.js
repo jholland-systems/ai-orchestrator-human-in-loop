@@ -43,6 +43,10 @@ if (!hasRealImplementation) {
     scripts: {
       build: 'tsc',
       clean: 'rm -rf dist'
+    },
+    devDependencies: {
+      '@types/node': '^22.10.2',
+      typescript: '^5.6.3'
     }
   };
 
@@ -63,15 +67,15 @@ export interface IAgent {
 }
 
 export class StubAgent implements IAgent {
-  async plan(issue: any): Promise<any> {
+  async plan(_issue: any): Promise<any> {
     throw new Error('Proprietary AI package not available - stub only');
   }
 
-  async code(plan: any, context: any): Promise<any> {
+  async code(_plan: any, _context: any): Promise<any> {
     throw new Error('Proprietary AI package not available - stub only');
   }
 
-  async review(code: any): Promise<any> {
+  async review(_code: any): Promise<any> {
     throw new Error('Proprietary AI package not available - stub only');
   }
 }
