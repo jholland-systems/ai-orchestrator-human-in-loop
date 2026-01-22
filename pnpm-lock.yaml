@@ -36,6 +36,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/proprietary-ai
     devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.19.7
       tsx:
         specifier: ^4.19.2
         version: 4.21.0
@@ -71,11 +74,21 @@ importers:
         specifier: workspace:*
         version: link:../core
     devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.19.7
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
 
-  packages/proprietary-ai: {}
+  packages/proprietary-ai:
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.19.7
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
 
   tests:
     dependencies:
