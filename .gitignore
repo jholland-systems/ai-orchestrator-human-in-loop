@@ -142,3 +142,6 @@ vite.config.ts.timestamp-*
 # Keep .gitkeep visible so directory structure is tracked
 packages/proprietary-ai/**
 !packages/proprietary-ai/.gitkeep
+
+# Turborepo cache
+.turbo/
