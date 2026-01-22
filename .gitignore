@@ -137,3 +137,8 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Open Core Strategy: Hide proprietary AI package (prompts, agent logic)
+# Keep .gitkeep visible so directory structure is tracked
+packages/proprietary-ai/**
+!packages/proprietary-ai/.gitkeep
