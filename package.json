@@ -1,0 +1,33 @@
+{
+  "name": "ai-cd-v2",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-CD v2: AI Orchestrator with Human-in-Loop - Production-ready autonomous developer platform",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "preinstall": "node scripts/ensure-proprietary-stub.js",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "type-check": "turbo run type-check",
+    "lint": "turbo run lint",
+    "lint:deps": "dependency-cruiser --config .dependency-cruiser.js packages apps",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8",
+    "dependency-cruiser": "^16.7.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "^5.6.3"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist/tests",
+    "composite": false,
+    "noEmit": true,
+    "types": ["vitest/globals", "node"],
+    "strictNullChecks": true
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "../packages/core" }
+  ]
+}

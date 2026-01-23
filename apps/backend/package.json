@@ -1,0 +1,25 @@
+{
+  "name": "@ai-cd/backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deployable API server",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ai-cd/core": "workspace:*",
+    "@ai-cd/github-worker": "workspace:*",
+    "@ai-cd/proprietary-ai": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
