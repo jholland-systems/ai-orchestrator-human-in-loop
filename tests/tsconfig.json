@@ -5,7 +5,8 @@
     "outDir": "../dist/tests",
     "composite": false,
     "noEmit": true,
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node"],
+    "strictNullChecks": true
   },
   "include": ["./**/*"],
   "exclude": ["node_modules"],

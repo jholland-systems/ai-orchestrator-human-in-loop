@@ -44,28 +44,30 @@ describe('Phase 1 Gate: Hello World Integration Test', () => {
 
   it('should insert a job and retrieve it', async () => {
     // Insert a new job
-    const [insertedJob] = await db
+    const insertedJobs = await db
       .insert(jobs)
       .values({ status: 'QUEUED' })
       .returning();
 
     // Validate insertion
-    expect(insertedJob).toBeDefined();
-    expect(insertedJob!.id).toBeDefined();
-    expect(insertedJob!.status).toBe('QUEUED');
-    expect(insertedJob!.createdAt).toBeInstanceOf(Date);
-    expect(insertedJob!.updatedAt).toBeInstanceOf(Date);
+    expect(insertedJobs).toHaveLength(1);
+    const insertedJob = insertedJobs[0]!;
+    expect(insertedJob.id).toBeDefined();
+    expect(insertedJob.status).toBe('QUEUED');
+    expect(insertedJob.createdAt).toBeInstanceOf(Date);
+    expect(insertedJob.updatedAt).toBeInstanceOf(Date);
 
     // Retrieve the job
-    const [retrievedJob] = await db
+    const retrievedJobs = await db
       .select()
       .from(jobs)
-      .where(eq(jobs.id, insertedJob!.id));
+      .where(eq(jobs.id, insertedJob.id));
 
     // Validate retrieval
-    expect(retrievedJob).toBeDefined();
-    expect(retrievedJob!.id).toBe(insertedJob!.id);
-    expect(retrievedJob!.status).toBe('QUEUED');
+    expect(retrievedJobs).toHaveLength(1);
+    const retrievedJob = retrievedJobs[0]!;
+    expect(retrievedJob.id).toBe(insertedJob.id);
+    expect(retrievedJob.status).toBe('QUEUED');
   });
 
   it('should insert multiple jobs', async () => {
@@ -92,25 +94,27 @@ describe('Phase 1 Gate: Hello World Integration Test', () => {
 
   it('should update job status', async () => {
     // Insert a job
-    const [job] = await db
+    const insertedJobs = await db
       .insert(jobs)
       .values({ status: 'QUEUED' })
       .returning();
 
-    expect(job).toBeDefined();
+    expect(insertedJobs).toHaveLength(1);
+    const job = insertedJobs[0]!;
 
     // Update the job status
-    const [updatedJob] = await db
+    const updatedJobs = await db
       .update(jobs)
       .set({ status: 'PLANNING', updatedAt: new Date() })
-      .where(eq(jobs.id, job!.id))
+      .where(eq(jobs.id, job.id))
       .returning();
 
     // Validate update
-    expect(updatedJob).toBeDefined();
-    expect(updatedJob!.id).toBe(job!.id);
-    expect(updatedJob!.status).toBe('PLANNING');
-    expect(updatedJob!.updatedAt.getTime()).toBeGreaterThan(job!.updatedAt.getTime());
+    expect(updatedJobs).toHaveLength(1);
+    const updatedJob = updatedJobs[0]!;
+    expect(updatedJob.id).toBe(job.id);
+    expect(updatedJob.status).toBe('PLANNING');
+    expect(updatedJob.updatedAt.getTime()).toBeGreaterThan(job.updatedAt.getTime());
   });
 
   it('should handle metadata field', async () => {
@@ -121,36 +125,39 @@ describe('Phase 1 Gate: Hello World Integration Test', () => {
       labels: ['bug', 'priority-high']
     };
 
-    const [job] = await db
+    const insertedJobs = await db
       .insert(jobs)
       .values({ status: 'QUEUED', metadata })
       .returning();
 
-    expect(job).toBeDefined();
-    expect(job!.metadata).toEqual(metadata);
+    expect(insertedJobs).toHaveLength(1);
+    const job = insertedJobs[0]!;
+    expect(job.metadata).toEqual(metadata);
 
     // Retrieve and validate metadata
-    const [retrievedJob] = await db
+    const retrievedJobs = await db
       .select()
       .from(jobs)
-      .where(eq(jobs.id, job!.id));
+      .where(eq(jobs.id, job.id));
 
-    expect(retrievedJob?.metadata).toEqual(metadata);
+    expect(retrievedJobs).toHaveLength(1);
+    expect(retrievedJobs[0]?.metadata).toEqual(metadata);
   });
 
   it('should use default values correctly', async () => {
     // Insert a job with minimal data (should use defaults)
-    const [job] = await db
+    const insertedJobs = await db
       .insert(jobs)
       .values({})
       .returning();
 
     // Validate defaults
-    expect(job).toBeDefined();
-    expect(job!.id).toBeDefined(); // UUID generated
-    expect(job!.status).toBe('QUEUED'); // Default status
-    expect(job!.createdAt).toBeInstanceOf(Date);
-    expect(job!.updatedAt).toBeInstanceOf(Date);
-    expect(job!.metadata).toEqual({}); // Default empty object
+    expect(insertedJobs).toHaveLength(1);
+    const job = insertedJobs[0]!;
+    expect(job.id).toBeDefined(); // UUID generated
+    expect(job.status).toBe('QUEUED'); // Default status
+    expect(job.createdAt).toBeInstanceOf(Date);
+    expect(job.updatedAt).toBeInstanceOf(Date);
+    expect(job.metadata).toEqual({}); // Default empty object
   });
 });
