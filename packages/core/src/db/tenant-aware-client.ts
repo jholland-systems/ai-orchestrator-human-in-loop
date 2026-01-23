@@ -8,8 +8,8 @@
 import { eq, and } from 'drizzle-orm';
 import type { SQL } from 'drizzle-orm';
 import type { PgTable } from 'drizzle-orm/pg-core';
-import { getCurrentTenantId, hasTenantContext } from '../context';
-import type { DbClient } from './index';
+import { getCurrentTenantId, hasTenantContext } from '../context/index.js';
+import type { DbClient } from './index.js';
 
 /**
  * Error thrown when attempting tenant-scoped query without context

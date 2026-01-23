@@ -5,6 +5,12 @@
   "description": "Deployable API server",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
@@ -15,7 +21,9 @@
   "dependencies": {
     "@ai-cd/core": "workspace:*",
     "@ai-cd/github-worker": "workspace:*",
-    "@ai-cd/proprietary-ai": "workspace:*"
+    "@ai-cd/proprietary-ai": "workspace:*",
+    "bullmq": "^5.34.0",
+    "ioredis": "^5.4.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

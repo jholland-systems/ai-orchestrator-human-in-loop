@@ -6,7 +6,7 @@
  */
 
 import { pgTable, uuid, bigint, varchar, boolean, jsonb, timestamp, index } from 'drizzle-orm/pg-core';
-import { tenants } from './tenants';
+import { tenants } from './tenants.js';
 
 export const repositories = pgTable('repositories', {
   id: uuid('id').defaultRandom().primaryKey(),

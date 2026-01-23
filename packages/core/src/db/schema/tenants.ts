@@ -6,7 +6,7 @@
  */
 
 import { pgTable, uuid, bigint, varchar, timestamp, jsonb, pgEnum, index } from 'drizzle-orm/pg-core';
-import { plans } from './plans';
+import { plans } from './plans.js';
 
 export const installationStatusEnum = pgEnum('installation_status_enum', [
   'pending',
