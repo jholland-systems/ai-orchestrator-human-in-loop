@@ -6,7 +6,7 @@
  * Future phases will add: issues, PRs, policies, etc.
  */
 
-export * from './jobs';
-export * from './plans';
-export * from './tenants';
-export * from './repositories';
+export * from './jobs.js';
+export * from './plans.js';
+export * from './tenants.js';
+export * from './repositories.js';

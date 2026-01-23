@@ -12,6 +12,6 @@ export {
   getCurrentOrganizationId,
   hasTenantContext,
   TenantContextError
-} from './tenant-context';
+} from './tenant-context.js';
 
-export type { TenantContext } from './tenant-context';
+export type { TenantContext } from './tenant-context.js';

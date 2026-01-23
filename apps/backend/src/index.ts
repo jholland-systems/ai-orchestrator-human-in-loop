@@ -4,6 +4,10 @@
  * This will be the main application entry point in future phases.
  */
 
-console.log('AI-CD v2 Backend - Phase 1 Skeleton');
-
-export {};
+// Export workers for testing
+export {
+  createPlanningWorker,
+  createCodingWorker,
+  createReviewingWorker,
+  createPrOpenWorker
+} from './workers';
