@@ -102,6 +102,9 @@ describe('Phase 1 Gate: Hello World Integration Test', () => {
     expect(insertedJobs).toHaveLength(1);
     const job = insertedJobs[0]!;
 
+    // Wait 10ms to ensure timestamp will change
+    await new Promise(resolve => setTimeout(resolve, 10));
+
     // Update the job status
     const updatedJobs = await db
       .update(jobs)
